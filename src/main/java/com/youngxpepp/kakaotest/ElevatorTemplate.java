@@ -1,5 +1,7 @@
 package com.youngxpepp.kakaotest;
 
+import java.util.List;
+
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -7,13 +9,13 @@ import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestTemplate;
 
-public class ElevatorService {
+public class ElevatorTemplate {
 
 	private static final String ROOT_URI = "http://localhost:8000";
 
 	private final RestTemplate restTemplate;
 
-	public ElevatorService() {
+	public ElevatorTemplate() {
 		this.restTemplate = new RestTemplateBuilder()
 			.rootUri(ROOT_URI)
 			.build();
@@ -39,6 +41,20 @@ public class ElevatorService {
 
 		ResponseEntity<Dto.OnCallResponseDto> response =
 			restTemplate.exchange("/oncalls", HttpMethod.GET, request, Dto.OnCallResponseDto.class);
+
+		return response.getBody();
+	}
+
+	public Dto.ActionResponseDto action(String token, List<Dto.CommandDto> commandList) {
+		HttpHeaders headers = new HttpHeaders();
+		headers.set("X-Auth-Token", token);
+		Dto.ActionRequestDto body = Dto.ActionRequestDto.builder()
+			.commands(commandList)
+			.build();
+		HttpEntity request = new HttpEntity(body, headers);
+
+		ResponseEntity<Dto.ActionResponseDto> response =
+			restTemplate.exchange("/action", HttpMethod.POST, request, Dto.ActionResponseDto.class);
 
 		return response.getBody();
 	}

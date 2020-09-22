@@ -43,8 +43,7 @@ public class Dto {
 	}
 
 	@AllArgsConstructor
-	@NoArgsConstructor
-	@Setter
+	@Builder
 	@Getter
 	public static class ActionRequestDto {
 
@@ -54,6 +53,19 @@ public class Dto {
 	@AllArgsConstructor
 	@NoArgsConstructor
 	@Setter
+	@Getter
+	public static class ActionResponseDto {
+
+		private String token;
+		private Integer timestamp;
+		private List<ElevatorDto> elevators;
+
+		@JsonProperty("is_end")
+		private Boolean isEnd;
+	}
+
+	@AllArgsConstructor
+	@Builder
 	@Getter
 	public static class CommandDto {
 
@@ -76,8 +88,6 @@ public class Dto {
 		private Integer id;
 		private Integer floor;
 		private List<CallDto> passengers;
-
-		@JsonProperty("status")
 		private ElevatorStatus status;
 	}
 
@@ -85,11 +95,16 @@ public class Dto {
 	@NoArgsConstructor
 	@Builder
 	@Getter
-	public static class CallDto {
+	public static class CallDto implements Comparable<CallDto> {
 
 		private Integer id;
 		private Integer timestamp;
 		private Integer start;
 		private Integer end;
+
+		@Override
+		public int compareTo(CallDto o) {
+			return end.compareTo(o.end);
+		}
 	}
 }
