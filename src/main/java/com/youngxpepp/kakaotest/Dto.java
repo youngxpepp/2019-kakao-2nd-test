@@ -81,12 +81,17 @@ public class Dto {
 	@NoArgsConstructor
 	@Getter
 	@JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY, getterVisibility = JsonAutoDetect.Visibility.NONE)
-	public static class ElevatorDto {
+	public static class ElevatorDto implements Comparable<ElevatorDto> {
 
 		private Integer id;
 		private Integer floor;
 		private List<CallDto> passengers;
 		private ElevatorStatus status;
+
+		@Override
+		public int compareTo(ElevatorDto o) {
+			return this.id.compareTo(o.getId());
+		}
 	}
 
 	@NoArgsConstructor
