@@ -8,6 +8,6 @@ public class Application {
 	public static void main(String[] args) {
 		ElevatorTemplate elevatorTemplate = new ElevatorTemplate();
 		AbstractSolution solution = new CollectiveSolution(elevatorTemplate);
-		solution.solve("leegeonhong3", 1, 1, 8, 25, 200);
+		solution.solve("leegeonhong", 2, 1, 8, 25, 500);
 	}
 }

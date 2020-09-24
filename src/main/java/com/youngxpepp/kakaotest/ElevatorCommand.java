@@ -1,6 +1,7 @@
 package com.youngxpepp.kakaotest;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonValue;
 import lombok.Getter;
 
 @Getter
@@ -13,6 +14,7 @@ public enum ElevatorCommand {
 	ENTER("ENTER"),
 	EXIT("EXIT");
 
+	@JsonValue
 	private String command;
 
 	ElevatorCommand(String command) {

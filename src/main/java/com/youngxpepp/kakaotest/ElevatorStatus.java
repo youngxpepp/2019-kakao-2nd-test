@@ -1,16 +1,16 @@
 package com.youngxpepp.kakaotest;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonSetter;
+import com.fasterxml.jackson.annotation.JsonValue;
 import lombok.Getter;
 
-@Getter
 public enum ElevatorStatus {
 	UPWARD("UPWARD"),
 	DOWNWARD("DOWNWARD"),
 	OPENED("OPENED"),
 	STOPPED("STOPPED");
 
+	@JsonValue
 	private String status;
 
 	ElevatorStatus(String status) {

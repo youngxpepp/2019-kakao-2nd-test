@@ -2,6 +2,7 @@ package com.youngxpepp.kakaotest;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -13,10 +14,9 @@ import lombok.Setter;
 @NoArgsConstructor(access = AccessLevel.NONE)
 public class Dto {
 
-	@AllArgsConstructor
 	@NoArgsConstructor
-	@Setter
 	@Getter
+	@JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY, setterVisibility = JsonAutoDetect.Visibility.NONE)
 	public static class StartResponseDto {
 
 		private String token;
@@ -27,10 +27,9 @@ public class Dto {
 		private Boolean isEnd;
 	}
 
-	@AllArgsConstructor
 	@NoArgsConstructor
-	@Setter
 	@Getter
+	@JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY, setterVisibility = JsonAutoDetect.Visibility.NONE)
 	public static class OnCallResponseDto {
 
 		private String token;
@@ -45,15 +44,15 @@ public class Dto {
 	@AllArgsConstructor
 	@Builder
 	@Getter
+	@JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY, getterVisibility = JsonAutoDetect.Visibility.NONE)
 	public static class ActionRequestDto {
 
 		private List<CommandDto> commands;
 	}
 
-	@AllArgsConstructor
 	@NoArgsConstructor
-	@Setter
 	@Getter
+	@JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY, getterVisibility = JsonAutoDetect.Visibility.NONE)
 	public static class ActionResponseDto {
 
 		private String token;
@@ -67,6 +66,7 @@ public class Dto {
 	@AllArgsConstructor
 	@Builder
 	@Getter
+	@JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY, getterVisibility = JsonAutoDetect.Visibility.NONE)
 	public static class CommandDto {
 
 		@JsonProperty("elevator_id")
@@ -78,11 +78,9 @@ public class Dto {
 		private List<Integer> callIds;
 	}
 
-	@AllArgsConstructor
 	@NoArgsConstructor
-	@Builder
-	@Setter
 	@Getter
+	@JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY, getterVisibility = JsonAutoDetect.Visibility.NONE)
 	public static class ElevatorDto {
 
 		private Integer id;
@@ -91,10 +89,9 @@ public class Dto {
 		private ElevatorStatus status;
 	}
 
-	@AllArgsConstructor
 	@NoArgsConstructor
-	@Builder
 	@Getter
+	@JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY, getterVisibility = JsonAutoDetect.Visibility.NONE)
 	public static class CallDto implements Comparable<CallDto> {
 
 		private Integer id;
